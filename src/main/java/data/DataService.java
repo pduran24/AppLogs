@@ -8,8 +8,8 @@ import java.util.List;
 public interface DataService {
 
 
-    public List<Crash> findAllCrashes();
-    public List<Event> findAllEvents();
+    public List<Crash> findAllCrashes(String archivo);
+    public List<Event> findAllEvents(String archivo);
 
 
 }

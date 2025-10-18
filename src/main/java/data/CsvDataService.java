@@ -13,20 +13,11 @@ import java.util.logging.Logger;
 
 public class CsvDataService implements DataService {
 
-    private String archivo;
-
-
     private static Logger logger = Logger.getLogger(CsvDataService.class.getName());
-
-    public CsvDataService(String archivo) {
-        this.archivo = archivo;
-    }
-
-
 
 
     @Override
-    public List<Crash> findAllCrashes() {
+    public List<Crash> findAllCrashes(String archivo) {
 
         var salida = new ArrayList<Crash>();
 
@@ -65,7 +56,36 @@ public class CsvDataService implements DataService {
     }
 
     @Override
-    public List<Event> findAllEvents() {
-        return List.of();
+    public List<Event> findAllEvents(String archivo) {
+
+        var salida = new ArrayList<Event>();
+
+        logger.info("Iniciando lista de events");
+
+        try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+
+            var contenido =  br.lines().skip(1);
+
+            contenido.forEach(line -> {
+                String[] lineArray = line.split(";");
+                Event event = new Event();
+                event.setTimeStamp(lineArray[0]);
+                event.setAppName(lineArray[1]);
+                event.setEventType(lineArray[2]);
+                event.setUserId(lineArray[3]);
+                event.setSessionId(lineArray[4]);
+                event.setEventData(lineArray[5]);
+
+                salida.add(event);
+            });
+
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return salida;
     }
 }

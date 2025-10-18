@@ -5,15 +5,12 @@ public class Main {
     static void main() {
 
 
-        DataService ds = new CsvDataService("crashes.csv");
+        DataService ds = new CsvDataService();
 
 
-        ds.findAllCrashes().forEach(System.out::println);
+        ds.findAllCrashes("crashes.csv").forEach(System.out::println);
 
-
-
-
-
+        ds.findAllEvents("events.csv").forEach(System.out::println);
 
 
     }
