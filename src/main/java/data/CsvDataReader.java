@@ -2,6 +2,7 @@ package data;
 
 import models.Crash;
 import models.Event;
+import service.DataService;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -10,12 +11,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
-import java.util.stream.Stream;
 
-public class CsvDataService implements DataService {
 
-    private static Logger logger = Logger.getLogger(CsvDataService.class.getName());
+public class CsvDataReader implements DataService {
 
+    private static Logger logger = Logger.getLogger(CsvDataReader.class.getName());
 
     @Override
     public List<Crash> findAllCrashes(String archivo) {
@@ -94,9 +94,7 @@ public class CsvDataService implements DataService {
     }
 
 
-
     private List<String> parseCsvLines(String linea) {
-
 
         List<String> campos = new ArrayList<>();
         StringBuilder camposTexto = new StringBuilder();

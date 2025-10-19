@@ -1,4 +1,4 @@
-package data;
+package service;
 
 import models.Crash;
 import models.Event;

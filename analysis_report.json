@@ -1,0 +1,12 @@
+{
+  "MobileApp" : {
+    "totalCrashes" : 5,
+    "totalEventos" : 5,
+    "tasaError" : 50.0
+  },
+  "FitnessTracker" : {
+    "totalCrashes" : 5,
+    "totalEventos" : 5,
+    "tasaError" : 50.0
+  }
+}
