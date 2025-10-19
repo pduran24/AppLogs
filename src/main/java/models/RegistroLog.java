@@ -4,7 +4,7 @@ package models;
 import lombok.Data;
 
 @Data
-public class RegistroLog {
+public abstract class RegistroLog {
 
     private String timeStamp;
     private String appName;
