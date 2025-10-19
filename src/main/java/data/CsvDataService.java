@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Stream;
 
 public class CsvDataService implements DataService {
 
@@ -26,18 +27,18 @@ public class CsvDataService implements DataService {
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
 
             var contenido =  br.lines().skip(1);
-
+            logger.info("Iniciando parseo de lines");
             contenido.forEach(line -> {
-                String[] lineArray = line.split(";");
+                List<String> lineArray = parseCsvLines(line);
                 Crash crash = new Crash();
 
-                crash.setTimeStamp(lineArray[0]);
-                crash.setAppName(lineArray[1]);
-                crash.setErrorCode(lineArray[2]);
-                crash.setErrorMessage(lineArray[3]);
-                crash.setStackTrace(lineArray[4]);
-                crash.setDeviceModel(lineArray[5]);
-                crash.setOsVersion(lineArray[6]);
+                crash.setTimeStamp(lineArray.get(0));
+                crash.setAppName(lineArray.get(1));
+                crash.setErrorCode(lineArray.get(2));
+                crash.setErrorMessage(lineArray.get(3));
+                crash.setStackTrace(lineArray.get(4));
+                crash.setDeviceModel(lineArray.get(5));
+                crash.setOsVersion(lineArray.get(6));
 
                 salida.add(crash);
             });
@@ -66,15 +67,18 @@ public class CsvDataService implements DataService {
 
             var contenido =  br.lines().skip(1);
 
+            logger.info("Iniciando parseo de lines");
             contenido.forEach(line -> {
-                String[] lineArray = line.split(";");
+                List<String> lineArray = parseCsvLines(line); // devuelve los campos bien separados
+
+
                 Event event = new Event();
-                event.setTimeStamp(lineArray[0]);
-                event.setAppName(lineArray[1]);
-                event.setEventType(lineArray[2]);
-                event.setUserId(lineArray[3]);
-                event.setSessionId(lineArray[4]);
-                event.setEventData(lineArray[5]);
+                event.setTimeStamp(lineArray.get(0));
+                event.setAppName(lineArray.get(1));
+                event.setEventType(lineArray.get(2));
+                event.setUserId(lineArray.get(3));
+                event.setSessionId(lineArray.get(4));
+                event.setEventData(lineArray.get(5));
 
                 salida.add(event);
             });
@@ -88,4 +92,34 @@ public class CsvDataService implements DataService {
 
         return salida;
     }
+
+
+
+    private List<String> parseCsvLines(String linea) {
+
+
+        List<String> campos = new ArrayList<>();
+        StringBuilder camposTexto = new StringBuilder();
+        boolean comillas = false;
+
+        for (int i = 0; i < linea.length(); i++) {
+            char c = linea.charAt(i);
+
+            if (c == '"') {
+                comillas = !comillas;
+            } else if (c == ';' && !comillas) {
+                campos.add(camposTexto.toString());
+                camposTexto.setLength(0);
+            } else {
+                camposTexto.append(c);
+            }
+        }
+
+        campos.add(camposTexto.toString());
+        return campos;
+    }
+
+
+
+
 }
