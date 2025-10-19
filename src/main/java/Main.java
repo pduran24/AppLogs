@@ -24,13 +24,13 @@ public class Main {
 
         logger.info("-> Datos de crashes y eventos leídos.");
 
-        // --- PARTE 2: PROCESAR DATOS (Capa de Servicio) ---
+        // PARTE 2: PROCESAR DATOS (Capa de Servicio)
         InformeService informeService = new InformeService();
         Map<String, Informe> reportData = informeService.generateInformeMap(crashes, events);
         logger.info("-> Datos procesados y métricas calculadas.");
 
-        // --- PARTE 3: ESCRIBIR INFORME JSON (Capa de Datos) ---
-        JsonWriter jsonWriter = new JsonWriter(); // 2. Crea una instancia
+        // PARTE 3: ESCRIBIR INFORME JSON (Capa de Datos)
+        JsonWriter jsonWriter = new JsonWriter();
         jsonWriter.writeReport(reportData, "analysis_report.json");
 
     }
