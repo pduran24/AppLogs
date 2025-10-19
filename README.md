@@ -63,7 +63,7 @@ El proyecto está estructurado siguiendo una arquitectura limpia de tres capas.
       * Contiene la lógica de negocio principal. 
       * Es un **servicio sin estado** que recibe los datos brutos, los procesa para calcular las métricas y devuelve el resultado consolidado.
 
-### 📁 `data`
+### `data`
 
 * **Responsabilidad**: 
   * Capa de Acceso a Datos (Data Access Layer). 
