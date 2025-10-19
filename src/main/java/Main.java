@@ -1,6 +1,5 @@
 import data.CsvDataReader;
 import data.JsonWriter;
-import lombok.extern.flogger.Flogger;
 import models.Crash;
 import models.Event;
 import models.Informe;
