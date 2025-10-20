@@ -22,7 +22,7 @@ public class Informe {
 
     public void calcularTasaError() {
         if (totalCrashes + totalEventos > 0) {
-            tasaError = ((double) totalCrashes / (totalCrashes + totalEventos)) * 100.0;
+            tasaError = ((double) totalCrashes / ( totalEventos)) * 100.0;
         } else {
             tasaError = 0.0;
         }
