@@ -71,6 +71,6 @@ El proyecto está estructurado siguiendo una arquitectura limpia de tres capas.
 * **Clases**:
     * `CsvDataReader`: Implementación concreta que sabe cómo leer y parsear los ficheros CSV. Cumple el contrato definido por la interfaz `DataService`.
     * `JsonWriter`: Clase responsable únicamente de tomar los datos del informe y escribirlos en un fichero JSON.
-
+    * `PropertiesWriter`: Clase adicional para generar un archivo properties además del json pedido (opcional, solo para ver cómo implementar properties correctamente)
 
 
