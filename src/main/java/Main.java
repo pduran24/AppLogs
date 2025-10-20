@@ -1,5 +1,6 @@
 import data.CsvDataReader;
 import data.JsonWriter;
+import data.PropertiesWriter;
 import models.Crash;
 import models.Event;
 import models.Informe;
@@ -31,6 +32,10 @@ public class Main {
         // PARTE 3: ESCRIBIR INFORME JSON (Capa de Datos)
         JsonWriter jsonWriter = new JsonWriter();
         jsonWriter.writeReport(reportData, "analysis_report.json");
+
+        // Archivo properties
+        var properties = new PropertiesWriter();
+        properties.writePropertieFile(reportData, "analisys_report_properties.properties");
 
     }
 }
