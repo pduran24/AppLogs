@@ -74,3 +74,4 @@ El proyecto está estructurado siguiendo una arquitectura limpia de tres capas.
     * `PropertiesWriter`: Clase adicional para generar un archivo properties además del json pedido (opcional, solo para ver cómo implementar properties correctamente)
 
 
+
